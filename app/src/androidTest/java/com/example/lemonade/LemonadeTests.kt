@@ -69,6 +69,25 @@ class LemonadeTests : BaseTest() {
         testState(R.string.lemon_drink, R.drawable.lemon_drink)
     }
 
+    @Test
+    fun `test_squeeze_state_to_restart`() {
+        // Click image to progress state
+        onView(withId(R.id.image_lemon_state)).perform(click())
+        juiceLemon()
+        drinkJuice()
+        testState(R.string.lemon_empty_glass, R.drawable.lemon_restart)
+    }
+
+    @Test
+    fun `test_squeeze_state_to_pick`() {
+        // Click image to progress state
+        onView(withId(R.id.image_lemon_state)).perform(click())
+        juiceLemon()
+        drinkJuice()
+        restart()
+        testState(R.string.select_a_lemon, R.drawable.lemon_tree)
+    }
+
     /**
      * Test squeeze count snackbar
      */
